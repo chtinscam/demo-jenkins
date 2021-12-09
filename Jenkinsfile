@@ -3,7 +3,7 @@ pipeline {
         stages {
             stage('Clone') {
                 steps {
-                    git 'https://github.com/chtinscam/demo-jenkins.git'
+                   sudo git clone 'https://github.com/chtinscam/demo-jenkins.git'
                 }
             }
         }
