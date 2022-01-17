@@ -1,0 +1,79 @@
+server:
+  port: 9999
+  ssl:
+    enabled: false
+    #key-store: classpath:ssl_config/oauth2_keystore
+    key-store: /home/integral/IFE-Base/config/oauth2/keystore
+    key-alias: ife
+    key-store-password: changeit
+    key-password: changeit
+  servlet:
+    context-path: /ife-infra-oauth2
+
+static:
+  resources:
+    server:
+      #url: http://integral-reg-204-1958660911.ap-southeast-1.elb.amazonaws.com/ife-web-base-resources
+      url: http://integral-reg-204-1958660911.ap-southeast-1.elb.amazonaws.com
+
+landing:
+  page:
+    url: http://integral-reg-204-1958660911.ap-southeast-1.elb.amazonaws.com/AgencySales/workspace
+  signup:
+    url: http://integral-reg-204-1958660911.ap-southeast-1.elb.amazonaws.com/AgencySales
+
+spring:
+  data:
+    elasticsearch:
+      properties:
+        host: localhost
+        port: 9300
+      cluster-nodes: http://localhost:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+    jpa:
+      repositories:
+        enabled: false
+  dao:
+    exceptiontranslation:
+      enabled: false
+  thymeleaf:
+    enabled: true
+    cache: true
+    suffix: .html
+    mode: HTML5
+
+logging:
+  level:
+    org:
+      springframework: 
+        security: 
+           oauth2: DEBUG
+           jwt: DEBUG
+
+# define ldap connection
+ldap:
+  url: ldap://localhost:10389
+  base: dc=ipos,dc=com
+  userdn: uid=admin,ou=system
+  password: secret
+  user:
+    search:
+      base: ou=useraccounts
+      filter: (cn={0})
+
+ihub:
+  integration:
+    enabled: false
+    fake-data: true
+  server:
+    uri: http://cscvieae528143
+  api:
+    login: /uic_group_ihub/service/rest/ds/ipos/logon
+    auditor-authority-matrix: /uic_group_ihub/api/service/rest/ds/ipos/matrix
+
+    
+calc:
+  server:
+    uri: http://ec2-18-139-187-180.ap-southeast-1.compute.amazonaws.com/PX_Calculator

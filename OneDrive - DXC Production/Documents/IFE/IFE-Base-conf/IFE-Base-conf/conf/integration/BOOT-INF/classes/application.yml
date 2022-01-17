@@ -1,0 +1,88 @@
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/ife-infra-oauth2/user
+      additionalUri: http://localhost:9999/ife-infra-oauth2/oauth/{token}/get/additionalInfo 
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  cache:
+    ehcache:
+      config: ehcache.xml
+      
+# Mocro Service Group IDs      
+microservices:
+  caseServiceId: case-management
+  
+#URI Cases
+cases:
+    api:
+      casesContextUri: /cases
+      updateBusinessStatusES: /cases/{ID}/updateBusinessStatusES
+
+#URI ELK
+elasticsearch:
+  server: http://localhost:9200/
+  
+#URI Ihub
+ihub:
+  api:  
+   checkAgentUri:
+      pnc: http://ec2-52-221-169-161.ap-southeast-1.compute.amazonaws.com/springHubPnc/api/SalesAgentEnquiryService/pnc/{id}
+      life: http://ec2-52-221-169-161.ap-southeast-1.compute.amazonaws.com/springHubLife/api/SalesAgentEnquiryService/life/{id}
+   checkAgentByIdTypeUri: http://cscvieai381411:8080/ihub/api/SalesAgentEnquiryService/{type}/{id}
+   checkPolicyHolderUri: https://ec2-52-220-161-231.ap-southeast-1.compute.amazonaws.com/GGI_LIFE_FT_IHUB/api/PolicyCheckService
+   getListAgentByIdUri: http://CSCVIEAI381411:8080/ihub/api/ClientEnquiryService/{type}/{id}
+   getExchangeRateCurrencyUri:
+      pnc: http://ec2-52-221-169-161.ap-southeast-1.compute.amazonaws.com/springHubPnc/api/ExchangeReturnService/general
+      life: http://ec2-52-221-169-161.ap-southeast-1.compute.amazonaws.com/springHubLife/api/ExchangeReturnService/life 
+   enabled: true
+   agent:
+     pnc:
+       id: 10002347
+       name: Agent
+       email: agent@ihub.com
+       branch:
+         code: 10
+         name: Head Office
+     life:
+       id: 60001762
+       name: Agent Life
+       email: agent@ihub.com
+       branch:
+         code: 10
+         name: Head Office
+   exchangeRate:
+    THB: 241.0950000
+    USD: 8211.0000000
+    
+ipos:
+  running:
+    mode:
+      normal: false
+      interval: 0
+  products:
+    active: VPM, VPS, PHE, PTA, FIR, FIZ, TVS, TVA, IPC, GGI
+    inactive: 
+    
+calc:
+  server:
+    uri: http://ec2-18-139-187-180.ap-southeast-1.compute.amazonaws.com/PX_Calculator
+    
+vpms:
+  calc:
+    uri: http://target2.integral.digital/vpms/v2/rest/calc/INTLIFE_DEV
+    
+productStage:
+  username: IFEUSER
+  password: Tuesday16
+  uri: http://integral-demo204-779700892.ap-southeast-1.elb.amazonaws.com
+  authenticateUri: /product-stage-api-default/api/keys
+  getProductListUri: /product-stage-api-default/api/components/LIFE/LIFE_PRODUCTS/
+  variant : 1
+  revision : 6

@@ -1,0 +1,84 @@
+spring:
+  data:
+    elasticsearch:
+      properties:
+        host: localhost
+        port: 9300
+      cluster-nodes: localhost:9300
+      rest-cluster-nodes: 127.0.0.1:9200
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/ife-infra-oauth2/user
+      additionalUri: http://localhost:9999/ife-infra-oauth2/oauth/{token}/get/additionalInfo      
+
+vpms:
+  server:
+    uri: http://ec2-18-136-45-157.ap-southeast-1.compute.amazonaws.com/vpms/v1/rest/exec/9130
+    fileName: utility-vpm.vpm  
+px:
+  server:
+    uri: http://ec2-18-136-45-157.ap-southeast-1.compute.amazonaws.com/vpms/v1/rest/exec/9130
+    fileName: utility-vpm.vpm
+    
+calc:
+  server:
+    uri: http://ec2-18-136-45-157.ap-southeast-1.compute.amazonaws.com/PX_Calculator
+    
+ingenium:
+  integration:
+    baseurl: https://10.117.18.101/DLI-UAT-IHUB/api/    
+distrbchannel:
+  fetch:
+    type: OMNI
+  
+elasticsearch:
+  masterdata:
+    index: master_data
+    type: config  
+    docId: QasnRW0BsMSTFtasptiJ
+  mapping:
+    index: mapping_data
+    type: config  
+    docId: 93I0Ym0BF-D9M3q12PDV 
+  ruleconfig:
+    index: rules_engine_data
+    type: config
+  productconfig:
+    index: product_config
+    type: config
+  benefitconfig:
+    index: benefit_config
+    type: config  
+  parameterconfig:
+    index: parameter_config
+    type: config
+  citytownshipconfig:
+    index: city_township_config
+    type: config
+  regionconfig:
+    index: region_config
+    type: config
+    docId: ZBBIQXQBo0gs_v1J1FRB
+  partersetupconfig:
+    index: partner_branch_master
+    type: config
+    docId: -7SXanMB-ddHSOGhZsO2
+  partnerproductconfig:
+    index: partner_product
+    type: config 
+  accountconfig:
+    index: account
+    type: accounts
+computeRuntime : 1
+#1 : vpms, = 2 : product express(PX).

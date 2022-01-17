@@ -1,0 +1,73 @@
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password: P@ssword123
+    timeout: 10000    
+    jedis:
+      pool:
+        max-idle: 100 # max idle connections in the pool
+        min-idle: 0 # min idle connections in the pool
+        max-wait: 30000 # time limit to get a connection - only applies if maxActive is finite
+  config:
+    location: classpath:/config/
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ssZ"
+    time-zone: "Asia/Saigon"
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      
+  data:
+    elasticsearch:
+      properties:
+        host: localhost
+        port: 9300
+      cluster-nodes: localhost:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+    jpa:
+      repositories:
+        enabled: false
+        
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/        
+                     
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/ife-infra-oauth2/user
+      additionalUri: http://localhost:9999/ife-infra-oauth2/oauth/{token}/get/additionalInfo
+      
+vpms:
+  server:
+    uri: http://ec2-18-136-45-157.ap-southeast-1.compute.amazonaws.com/vpms/v1/rest/exec/9130
+    quoVpmsFileName: INTIPOSLIFE.VPM
+    quoMappingFileName: quotation.mapping
+    vpmsType: PH
+                  
+# Micro Service Group IDs      
+microservices:
+  gatewayServiceId: api-management
+  
+#Cache expire time.
+cacheManager:
+  redisExpiredTime: 3600000
+
+logging:
+  level:
+    org.springframework.web.filter: DEBUG
+    com.csc: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"    
+computeRuntime : 1
+#1 : vpms, = 2 : product express(PX). 
+
+calc:
+  server:
+    uri: http://ec2-18-139-187-180.ap-southeast-1.compute.amazonaws.com/PX_Calculator

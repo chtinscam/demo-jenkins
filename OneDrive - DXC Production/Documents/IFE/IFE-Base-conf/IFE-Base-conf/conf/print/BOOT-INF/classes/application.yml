@@ -1,0 +1,64 @@
+multipart:
+  enabled: true
+print:
+  api:
+    pathFolderTemplate: /home/integral/IFE-Base/config/print/resources/templates
+    listFontName: Arial,Verdana
+    folderhtml: /home/integral/IFE-Base/config/print/Data/folderhtml/
+    nodehtml: file:///home/integral/IFE-Base/config/print/Data/folderhtml/
+    generateApi: http://localhost:3000/printPdf
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 10000
+    pool:
+      maxIdle: 100 # max idle connections in the pool
+      minIdle: 0 # min idle connections in the pool
+      maxActive: -1 # no limit to the number of active connections
+      maxWait: 30000 # time limit to get a connection - only applies if maxActive is finite
+  config:
+    location: classpath:/config/
+  jackson:
+    date-format: "yyyy-MM-dd"
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+        
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+esign:
+  services:
+    preload:
+      url: http://20.203.133.141:8080/sdweb/rest/v1/documents/
+    view:
+      url: https://20.203.133.141/sdweb/load/doc?ref_id=
+  plugins:
+    dms: de.softpro.sdweb.plugins.impl.ExtFileDms
+                  
+# Micro Service Group IDs      
+microservices:
+  gatewayServiceId: api-management
+
+#Cache expire time.
+cacheManager:
+  redisExpiredTime: 3600000
+
+authentication:
+  oauth2:
+    clientid: uic-web
+    secret: uicsecret
+    server: http://localhost:9999
+    credential:
+      url: /ife-infra-oauth2/oauth/token?grant_type=client_credentials
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/ife-infra-oauth2/user
+      additionalUri: http://localhost:9999/ife-infra-oauth2/oauth/{token}/get/additionalInfo
+computeRuntime : 1

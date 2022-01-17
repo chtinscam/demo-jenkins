@@ -1,0 +1,167 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: localhost
+    port: 6379
+    password: P@ssword123
+    timeout: 10000    
+    jedis:
+      pool:
+        max-idle: 100 # max idle connections in the pool
+        min-idle: 0 # min idle connections in the pool
+        max-wait: 30000 # time limit to get a connection - only applies if maxActive is finite:
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ssZ"
+    time-zone: "Asia/Saigon"
+    time-offset: "SGT"
+    serialization:
+       write-dates-as-timestamps: false
+  data:
+    elasticsearch:
+      properties:
+        host: localhost
+        port: 9300
+      cluster-nodes: localhost:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+    jpa:
+      repositories:
+        enabled: false
+        
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/        
+                     
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/ife-infra-oauth2/user
+      additionalUri: http://localhost:9999/ife-infra-oauth2/oauth/{token}/get/additionalInfo
+      
+vpms:
+  server:
+    uri: http://ec2-18-136-45-157.ap-southeast-1.compute.amazonaws.com/vpms/v1/rest/exec/9130
+    fileName: case-management.vpm
+    dsFileName: case-management.vpm
+    mappingFileName: case-management.mapping
+    vpmsType: VN
+    
+esign:
+  internal:
+      uploadDocumentUrl: https://ec2-13-229-244-0.ap-southeast-1.compute.amazonaws.com/57002/
+      prepareDocumentUrl: https://ec2-13-229-244-0.ap-southeast-1.compute.amazonaws.com/57003/
+      prepareAdHocWorkstepUrl: https://ec2-13-229-244-0.ap-southeast-1.compute.amazonaws.com/57004/
+      redirectToWSIUrl: https://ec2-13-229-244-0.ap-southeast-1.compute.amazonaws.com/50300/
+      serverBaseUrl: http://172.31.30.143
+      webServerUrl: http://localhost:8089
+  launchApp: 
+      server: 20.203.133.164
+      port: 57003
+      protocol: http
+      
+agentid:
+    rul: 60001494
+    moto: 123456789    
+                  
+# Micro Service Group IDs      
+microservices:
+  gatewayServiceId: api-management
+  documentServiceId: document-center-management
+  quotationServiceId: quotation-management
+  applicationServiceId: application-management
+  managerServiceId: managerreview-management
+  submissionServiceId: submission-management
+  printServiceId: print-management
+  emailServiceId: notification-management
+  accountServiceId: account-management
+  integrateServiceId: integration-management
+  contactServiceId: contact-management
+  paymentServiceId: payment-management
+  fnaServiceId: fna-management
+
+dms:
+  api:
+    dmsUriById: /attachments/{ID}
+
+account:
+  api:
+    accountUriById: /accounts/{userName:.+}
+
+notification:
+    api:
+      emailUri: /notifications/email
+      emailUriById: /notifications/email/uw/{ID}
+
+#URI Ihub
+ihub:
+  api:
+    TSAR: https://ec2-52-220-161-231.ap-southeast-1.compute.amazonaws.com/GGI_LIFE_FT_IHUB/api/TSAR
+
+fna:
+  api:
+    fnaUri: /fnas/{ID}
+    fnaByDocName: /fnas/{docName}/{version}
+    fnaListUrl: /fnas/query/list
+    fnaMetaDataListUrl: /fnas/query/metaData/list
+
+#Cache expire time.
+cacheManager:
+  redisExpiredTime: 3600000
+  
+authentication:
+  oauth2:
+    clientid: uic-web
+    secret: uicsecret
+    server: http://localhost:9999
+    credential:
+      url: /ife-infra-oauth2/oauth/token?grant_type=client_credentials
+
+domain:
+  api-manager:
+    host: localhost:8080/
+
+integrate:
+  notify:
+    uri: http://cscvieae528143/uic_group_ihub/api/CreateGroupPolicy
+  api:
+    processingInfos: http://20.203.6.70:2407/integration/services/callback/cases/{id}/processingInfos   
+    processingInfosds: http://20.203.6.70:2407/integration/services/callback/cases/{id}/processingInfosds
+    webservice: http://10.90.48.96:8080/lifewebservices/LCreateNewContractGroupedService/lcreatenewcontract 
+  share-folder:
+    location: \\20.203.133.168\ihubshared
+#URI Submission
+contact:
+    api:
+      contactUri: /contacts/{ID}
+#URI Submission
+submission:
+    api:
+      caseUri: /submissions/cases
+#URI PAYMENT
+payment:
+    api:
+      paymentUri: /transactions/{ID}
+
+# Configuration for concurrency
+executor:
+  corePoolSize: 1
+  maxPoolSize: 5
+  queueCapacity: 50
+# Email Underwriter 
+underwriter:
+  rul: htruong31@csc.com
+computeRuntime : 1
+#1 : vpms, = 2 : product express(PX). 
+calc:
+  server:
+    uri: http://ec2-18-139-187-180.ap-southeast-1.compute.amazonaws.com/PX_Calculator
+ij:
+  server:
+    uri: http://target2.integral.digital/life-ws/lifewebservices/LCreateNewContractGroupedService
+    userName: KNARRA
+    password: October19
